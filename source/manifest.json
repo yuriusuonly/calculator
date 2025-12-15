@@ -1,6 +1,5 @@
 {
   "name": "Calculator",
-  "short_name": "Calculator",
   "description": "Calculator",
   "display": "standalone",
   "start_url": "./",

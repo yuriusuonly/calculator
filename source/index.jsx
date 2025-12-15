@@ -64,8 +64,7 @@ const evaluate = (infix) => {
     "+": 1,
     "-": 1,
     "×": 2,
-    "÷": 2,
-    "^": 3
+    "÷": 2
   }
 
   const operators = [];
@@ -81,7 +80,7 @@ const evaluate = (infix) => {
       while (operators.length && !"(".includes(operators.at(-1)))
         postfix.push(operators.pop());
       if (!operators.length)
-        throw new SyntaxError(`Mismatched parenthesis '${token}'`);
+        throw new SyntaxError(`Mismatched '${token}'`);
       // Discard the opening parenthesis
       operators.pop();
     }
@@ -98,7 +97,7 @@ const evaluate = (infix) => {
   // Append remaining operators from the stack and validate open and closing parentheses
   while (operators.length) {
     if ("()".includes(operators.at(-1)))
-      throw new SyntaxError(`Mismatched parenthesis '${operators.at(-1)}'`);
+      throw new SyntaxError(`Mismatched '${operators.at(-1)}'`);
     postfix.push(operators.pop());
   }
 
@@ -128,7 +127,7 @@ const evaluate = (infix) => {
 
   // Check if there's only one value left in the stack, which should be the final result
   if (stack.length !== 1)
-    throw new Error(`Invalid expression '${infix.join("")}'`);
+    throw new Error(`Invalid '${infix.join("")}'`);
 
   // Return the final computed result
   return stack.pop();
@@ -167,56 +166,65 @@ const Calculator = () => {
     }
   };
 
+  const submit = (event) => {
+    event.preventDefault();
+    handleButtonClick("=");
+  };
+
+  const about = (event) => {
+    alert("Calculator by Yuriusu");
+  };
+
   return (
-    <>
-      <header>
-        <h1 className="topbar_title"></h1>
-        <button className="topbar_button" onClick={() => handleButtonClick("C")}><i className="material-icons">clear</i></button>
-      </header>
-      <main>
+    <main>
+      <form onSubmit={submit}>
+        <header>
+          <div className="center">
+            <h6>Calculator</h6>
+          </div>
+          <div className="right">
+            <button className="material-icons" onClick={about}>info</button>
+          </div>
+        </header>
         <div className="expression">
-          <div className="expression_formula"><span>{formula()}</span></div>
-          <div className="expression_answer"><span>{answer()}</span></div>
+          <div className="result">{answer()}</div>
+          <input type="text" readOnly={true} required={true} value={formula()} onChange={(event) => setFormula(event.target.value)}/>
         </div>
         <div className="keypad">
-          <div className="keypad_row">
-            <button className="keypad_button" onClick={() => handleButtonClick("7")}>7</button>
-            <button className="keypad_button" onClick={() => handleButtonClick("8")}>8</button>
-            <button className="keypad_button" onClick={() => handleButtonClick("9")}>9</button>
-            <button className="keypad_button" onClick={() => handleButtonClick("^")}>^</button>
-            <button className="keypad_button" onClick={() => handleButtonClick("c")}><i className="material-icons">backspace</i></button>
+          <div className="keypad-row">
+            <button type="button" onClick={() => handleButtonClick("7")}>7</button>
+            <button type="button" onClick={() => handleButtonClick("8")}>8</button>
+            <button type="button" onClick={() => handleButtonClick("9")}>9</button>
+            <button type="button" onClick={() => handleButtonClick("c")}>⌫</button>
+            <button type="button" onClick={() => handleButtonClick("C")}>AC</button>
           </div>
-          <div className="keypad_row">
-            <button className="keypad_button" onClick={() => handleButtonClick("4")}>4</button>
-            <button className="keypad_button" onClick={() => handleButtonClick("5")}>5</button>
-            <button className="keypad_button" onClick={() => handleButtonClick("6")}>6</button>
-            <button className="keypad_button" onClick={() => handleButtonClick("×")}>×</button>
-            <button className="keypad_button" onClick={() => handleButtonClick("÷")}>÷</button>
+          <div className="keypad-row">
+            <button type="button" onClick={() => handleButtonClick("4")}>4</button>
+            <button type="button" onClick={() => handleButtonClick("5")}>5</button>
+            <button type="button" onClick={() => handleButtonClick("6")}>6</button>
+            <button type="button" onClick={() => handleButtonClick("×")}>×</button>
+            <button type="button" onClick={() => handleButtonClick("÷")}>÷</button>
           </div>
-          <div className="keypad_row">
-            <button className="keypad_button" onClick={() => handleButtonClick("1")}>1</button>
-            <button className="keypad_button" onClick={() => handleButtonClick("2")}>2</button>
-            <button className="keypad_button" onClick={() => handleButtonClick("3")}>3</button>
-            <button className="keypad_button" onClick={() => handleButtonClick("+")}>+</button>
-            <button className="keypad_button" onClick={() => handleButtonClick("-")}>-</button>
+          <div className="keypad-row">
+            <button type="button" onClick={() => handleButtonClick("1")}>1</button>
+            <button type="button" onClick={() => handleButtonClick("2")}>2</button>
+            <button type="button" onClick={() => handleButtonClick("3")}>3</button>
+            <button type="button" onClick={() => handleButtonClick("+")}>+</button>
+            <button type="button" onClick={() => handleButtonClick("-")}>-</button>
           </div>
-          <div className="keypad_row">
-            <button className="keypad_button" onClick={() => handleButtonClick("0")}>0</button>
-            <button className="keypad_button" onClick={() => handleButtonClick(".")}>.</button>
-            <button className="keypad_button" onClick={() => handleButtonClick("(")}>(</button>
-            <button className="keypad_button" onClick={() => handleButtonClick(")")}>)</button>
-            <button className="keypad_button keypad_button-equal" onClick={() => handleButtonClick("=")}>=</button>
+          <div className="keypad-row">
+            <button type="button" onClick={() => handleButtonClick("0")}>0</button>
+            <button type="button" onClick={() => handleButtonClick(".")}>.</button>
+            <button type="button" onClick={() => handleButtonClick("(")}>(</button>
+            <button type="button" onClick={() => handleButtonClick(")")}>)</button>
+            <button type="button" className="equals" onClick={() => handleButtonClick("=")}>=</button>
           </div>
         </div>
-      </main>
-    </>
+      </form>
+    </main>
   )
 };
 
 
 // Render component
 render(Calculator, document.body);
-
-
-// Register service worker
-navigator?.serviceWorker.register("./service-worker.js", {scope: "./"});

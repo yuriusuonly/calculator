@@ -4,7 +4,7 @@
 
 <div align="left">
   <a href="//yuriusu-calculator.web.app">
-    <img src="./preview.png" width="320" height="480"/>
+    <img src="./docs/assets/images/png/preview.png"/>
   </a>
 </div>
 

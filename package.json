@@ -14,13 +14,13 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "serve": "node server serve",
+    "start": "node server",
     "build": "node server build",
-    "clean": "node server clean"
+    "serve": "node server serve"
   },
   "devDependencies": {
-    "babel-preset-solid": "^1.9.6",
-    "esbuild": "^0.25.6",
-    "solid-js": "^1.9.7"
+    "vite": "^7.1.1",
+    "vite-plugin-pwa": "^1.0.2",
+    "vite-plugin-solid": "^2.11.8"
   }
 }

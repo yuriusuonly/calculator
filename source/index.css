@@ -1,14 +1,202 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:wght@0,300;0,400;0,500");
 @import url("https://fonts.googleapis.com/css?family=Material+Icons");
 
+:root {
+  color-scheme: light dark;
+}
+
 * {
   box-sizing: border-box;
 }
 
+html {
+  font-family: "Poppins", sans-serif;
+  width: 100%;
+  height: 100%;
+}
+
 body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width: 320px;
+  border-left: 1px solid rgba(0,0,0, 0.1);
+  border-right: 1px solid rgba(0,0,0, 0.1);
+  border-bottom: 1px solid rgba(0,0,0, 0.1);
+  border-bottom-left-radius: 32px;
+  border-bottom-right-radius: 32px;
+}
+
+div.container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+header {
+  display: flex;
+  height: 64px;
+}
+
+header div {
+  display: flex;
+  align-items: center;
+}
+
+header div.center {
+  display: flex;
+  flex-grow: 1;
+  padding: 0 24px;
+}
+
+header div.right {
+  display: flex;
+  padding: 0 16px;
+}
+
+header div h6 {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
   margin: 0;
 }
 
+header div button {
+  appearance: none;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: rgba(0,0,0,1);
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  transition-property: all;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in-out;
+
+  &:hover {
+    background-color: rgba(0,0,0, 0.1);
+  }
+
+  &:active {
+    background-color: rgba(0,0,0,1);
+    color: rgba(255,255,255,1);
+  }
+}
+
+div.expression {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: flex-end;
+  padding: 24px;
+  border-bottom-left-radius: 32px;
+  border-bottom-right-radius: 32px;
+  background-color: rgba(0,0,0, 0.1);
+}
+
+div.expression input {
+  appearance: none;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: rgba(0,0,0,1);
+  text-align: right;
+  cursor: text;
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  padding: 0;
+}
+
+div.expression .result {
+  font-family: "Poppins", sans-serif;
+  font-size: 34px;
+  font-weight: 500;
+  text-align: right;
+  color: rgba(0,0,0, 0.5);
+  max-width: 100%;
+  text-overflow: clip;
+  overflow: hidden;
+}
+
+div.keypad {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 16px;
+}
+
+div.keypad div.keypad-row {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  gap: 16px;
+}
+
+div.keypad div.keypad-row button {
+  appearance: none;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 1);
+  background-color: transparent;
+  color: rgba(0, 0, 0, 1);
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  transition-property: all;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in-out;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    background-color: rgba(0, 0, 0,1);
+    color: rgba(255, 255, 255,1);
+  }
+
+  &.equals {
+    border-color: rgb(0, 150, 136);
+    background-color: rgb(0, 150, 136);
+    color: rgba(255, 255, 255, 1);
+
+    &:hover {
+      border-color: rgb(38, 166, 153);
+      background-color: rgb(38, 166, 153);
+    }
+
+    &:active {
+      border-color: rgb(77, 182, 171);
+      background-color: rgb(77, 182, 171);
+    }
+  }
+}
+
+/*
 header {
   display: flex;
   align-items: center;
@@ -178,3 +366,4 @@ main {
 .keypad_button-equal:focus {
   background-color: #4DB6AC;
 }
+*/
